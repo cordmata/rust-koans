@@ -39,8 +39,8 @@ fn brackets() {
 #[test]
 fn duplicate_key() {
     let mut hm = HashMap::new();
-    hm.insert("Harry Potter", "Sorcerer's Stone");
     hm.insert("Harry Potter", "Goblet of Fire");
+    hm.insert("Harry Potter", "Sorcerer's Stone");
     assert_eq!(hm[&"Harry Potter"], "Sorcerer's Stone");
 }
 
@@ -48,6 +48,8 @@ fn duplicate_key() {
 #[test]
 fn duplicate_values() {
     let mut hm = HashMap::new();
+    hm.insert("Sorcerer's Stone", "Potter");
+    hm.insert("Goblet of Fire", "Potter");
     assert_eq!(hm[&"Sorcerer's Stone"], hm[&"Goblet of Fire"]);
 }
 
@@ -73,7 +75,7 @@ fn just_the_values() {
     map.insert("Red", "Fish");
     map.insert("Blue", "Fish");
     for num in map.values() {
-        assert_eq!(num, "Fish");
+        assert_eq!(num, &"Fish");
     }
 }
 
@@ -96,8 +98,8 @@ fn iterating_2() {
     map.insert(1, 1);
     map.insert(2, 4);
     map.insert(3, 9);
-    for __ in &map {
-        assert_eq!(__, value);
+    for (key, value)in &map {
+        assert_eq!(&map[key], value);
     }
 }
 
@@ -107,5 +109,6 @@ fn clearing() {
     let mut map = HashMap::new();
     map.insert("chairs", 30);
     map.insert("tables", 8);
+    map.clear();
     assert_eq!(map.get("chairs"), None);
 }
