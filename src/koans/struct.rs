@@ -86,10 +86,11 @@ fn dot_merging() {
 
     let rich = Account {
         balance: 1000000.00,
-        account_number: "fllababl",
+        account_number: "foobar",
         ..broke
     };
 
     assert_eq!(rich.holder, "Morgan Stanley");
     assert_eq!(rich.balance, 1000000.00);
+    assert_eq!(rich.account_number, "foobar");
 }
